@@ -40,18 +40,18 @@ export function getNoteAtFret(openStringNote: Note, fret: number): Note {
  */
 export function getIntervalName(interval: number): string {
   const intervalNames: Record<number, string> = {
-    0: 'R',     // Root
-    1: 'm2',    // Minor 2nd
-    2: 'M2',    // Major 2nd
-    3: 'm3',    // Minor 3rd
-    4: 'M3',    // Major 3rd
-    5: 'P4',    // Perfect 4th
-    6: 'TT',    // Tritone
-    7: 'P5',    // Perfect 5th
-    8: 'm6',    // Minor 6th
-    9: 'M6',    // Major 6th
-    10: 'm7',   // Minor 7th
-    11: 'M7',   // Major 7th
+    0: 'R', // Root
+    1: 'm2', // Minor 2nd
+    2: 'M2', // Major 2nd
+    3: 'm3', // Minor 3rd
+    4: 'M3', // Major 3rd
+    5: 'P4', // Perfect 4th
+    6: 'TT', // Tritone
+    7: 'P5', // Perfect 5th
+    8: 'm6', // Minor 6th
+    9: 'M6', // Major 6th
+    10: 'm7', // Minor 7th
+    11: 'M7', // Major 7th
   };
 
   return intervalNames[interval] || '';

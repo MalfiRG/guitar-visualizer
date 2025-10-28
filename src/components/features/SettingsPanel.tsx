@@ -1,11 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/Card';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '../ui/Select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/Select';
 import { Switch } from '../ui/Switch';
 import { Label } from '../ui/Label';
 import { SCALES } from '../../data/scales';
@@ -43,17 +37,12 @@ export function SettingsPanel({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-xl text-gray-900 dark:text-white">
-          Settings
-        </CardTitle>
+        <CardTitle className="text-xl text-gray-900 dark:text-white">Settings</CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Scale Selection */}
         <div className="space-y-2">
-          <Label
-            htmlFor="scale-select"
-            className="text-gray-700 dark:text-gray-300"
-          >
+          <Label htmlFor="scale-select" className="text-gray-700 dark:text-gray-300">
             Scale / Mode
           </Label>
           <Select value={selectedScale} onValueChange={setSelectedScale}>
@@ -72,10 +61,7 @@ export function SettingsPanel({
 
         {/* Root Note Selection */}
         <div className="space-y-2">
-          <Label
-            htmlFor="root-note-select"
-            className="text-gray-700 dark:text-gray-300"
-          >
+          <Label htmlFor="root-note-select" className="text-gray-700 dark:text-gray-300">
             Root Note
           </Label>
           <Select value={rootNote} onValueChange={setRootNote}>
@@ -94,10 +80,7 @@ export function SettingsPanel({
 
         {/* Tuning Selection */}
         <div className="space-y-2">
-          <Label
-            htmlFor="tuning-select"
-            className="text-gray-700 dark:text-gray-300"
-          >
+          <Label htmlFor="tuning-select" className="text-gray-700 dark:text-gray-300">
             Tuning
           </Label>
           <Select value={tuning} onValueChange={setTuning}>
@@ -115,9 +98,7 @@ export function SettingsPanel({
               ))}
 
               <SelectItem disabled value="7-string-header">
-                <span className="font-semibold text-gray-500 mt-2">
-                  7-String
-                </span>
+                <span className="font-semibold text-gray-500 mt-2">7-String</span>
               </SelectItem>
               {TUNINGS.filter((t) => t.strings === 7).map((t) => (
                 <SelectItem key={t.id} value={t.id}>
@@ -126,9 +107,7 @@ export function SettingsPanel({
               ))}
 
               <SelectItem disabled value="8-string-header">
-                <span className="font-semibold text-gray-500 mt-2">
-                  8-String
-                </span>
+                <span className="font-semibold text-gray-500 mt-2">8-String</span>
               </SelectItem>
               {TUNINGS.filter((t) => t.strings === 8).map((t) => (
                 <SelectItem key={t.id} value={t.id}>

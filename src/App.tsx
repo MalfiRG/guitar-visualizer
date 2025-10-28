@@ -27,7 +27,8 @@ function App() {
                 Extended Range Guitar Scale Visualizer
               </h1>
               <p className="text-slate-600 dark:text-slate-400">
-                Explore scales and modes for 6, 7 and 8-string guitars - Perfect for progressive metal & djent
+                Explore scales and modes for 6, 7 and 8-string guitars - Perfect for progressive
+                metal & djent
               </p>
             </div>
             <ThemeToggle />

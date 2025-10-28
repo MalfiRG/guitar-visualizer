@@ -28,10 +28,7 @@ export function Fretboard({
         <div className="flex mb-2">
           <div className="w-12" /> {/* String labels space */}
           {frets.map((fret) => (
-            <div
-              key={fret}
-              className="flex-1 text-center text-xs text-amber-200 font-semibold"
-            >
+            <div key={fret} className="flex-1 text-center text-xs text-amber-200 font-semibold">
               {fret}
             </div>
           ))}
@@ -41,9 +38,7 @@ export function Fretboard({
         {tuning.notes.map((openNote, stringIndex) => (
           <div key={stringIndex} className="flex items-center mb-4 last:mb-0">
             {/* String label */}
-            <div className="w-12 text-amber-200 font-bold text-sm text-right pr-3">
-              {openNote}
-            </div>
+            <div className="w-12 text-amber-200 font-bold text-sm text-right pr-3">{openNote}</div>
 
             {/* Frets */}
             <div className="flex-1 flex relative">
@@ -87,8 +82,8 @@ export function Fretboard({
                         {showIntervals
                           ? getIntervalName(fretNote.interval)
                           : showNoteNames
-                          ? fretNote.note
-                          : ''}
+                            ? fretNote.note
+                            : ''}
                       </div>
                     )}
 
@@ -97,13 +92,12 @@ export function Fretboard({
                       [3, 5, 7, 9, 15, 17, 19, 21].includes(fret) && (
                         <div className="absolute w-2 h-2 rounded-full bg-amber-300 opacity-40" />
                       )}
-                    {stringIndex === Math.floor(tuning.strings / 2) &&
-                      [12, 24].includes(fret) && (
-                        <>
-                          <div className="absolute w-2 h-2 rounded-full bg-amber-300 opacity-40 top-1/4" />
-                          <div className="absolute w-2 h-2 rounded-full bg-amber-300 opacity-40 bottom-1/4" />
-                        </>
-                      )}
+                    {stringIndex === Math.floor(tuning.strings / 2) && [12, 24].includes(fret) && (
+                      <>
+                        <div className="absolute w-2 h-2 rounded-full bg-amber-300 opacity-40 top-1/4" />
+                        <div className="absolute w-2 h-2 rounded-full bg-amber-300 opacity-40 bottom-1/4" />
+                      </>
+                    )}
                   </div>
                 );
               })}

@@ -8,9 +8,7 @@ interface ScaleInfoProps {
 }
 
 export function ScaleInfo({ scale, rootNote }: ScaleInfoProps) {
-  const scaleNotes = scale.intervals.map((interval) =>
-    transposeNote(rootNote, interval)
-  );
+  const scaleNotes = scale.intervals.map((interval) => transposeNote(rootNote, interval));
 
   return (
     <Card>
@@ -25,19 +23,13 @@ export function ScaleInfo({ scale, rootNote }: ScaleInfoProps) {
           <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
             Description
           </h4>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            {scale.description}
-          </p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">{scale.description}</p>
         </div>
 
         {/* Genre */}
         <div>
-          <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
-            Genre
-          </h4>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            {scale.genre}
-          </p>
+          <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Genre</h4>
+          <p className="text-sm text-gray-600 dark:text-gray-400">{scale.genre}</p>
         </div>
 
         {/* Scale Notes */}
@@ -63,9 +55,7 @@ export function ScaleInfo({ scale, rootNote }: ScaleInfoProps) {
 
         {/* Intervals */}
         <div>
-          <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-            Intervals
-          </h4>
+          <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Intervals</h4>
           <div className="flex flex-wrap gap-2">
             {scale.intervals.map((interval, index) => (
               <div
