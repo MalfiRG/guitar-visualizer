@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  statuses: write
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -42,6 +46,7 @@ jobs:
         uses: 'vercel/repository-dispatch/actions/status@v1'
         with:
           name: 'Vercel - guitar-visualizer: lint'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     needs: test
