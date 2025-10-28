@@ -38,6 +38,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: 'notify vercel'
+        uses: 'vercel/repository-dispatch/actions/status@v1'
+        with:
+          name: 'Vercel - guitar-visualizer: lint'
+
   deploy:
     needs: test
     runs-on: ubuntu-latest
