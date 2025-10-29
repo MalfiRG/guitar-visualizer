@@ -9,7 +9,7 @@ import { TUNINGS } from './data/tunings';
 function App() {
   const [selectedScale, setSelectedScale] = useState('minor-pentatonic');
   const [rootNote, setRootNote] = useState('E');
-  const [tuning, setTuning] = useState('standard-7');
+  const [tuning, setTuning] = useState('standard-6');
   const [showNoteNames, setShowNoteNames] = useState(true);
   const [showIntervals, setShowIntervals] = useState(false);
 
