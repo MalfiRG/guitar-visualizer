@@ -13,7 +13,7 @@ export function ScaleInfo({ scale, rootNote }: ScaleInfoProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-xl text-gray-900 dark:text-white">
+        <CardTitle className="text-lg md:text-xl text-gray-900 dark:text-white">
           {rootNote} {scale.name}
         </CardTitle>
       </CardHeader>

@@ -20,13 +20,13 @@ function App() {
     <div className="min-h-screen bg-white dark:bg-black text-slate-900 dark:text-white transition-colors duration-200">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
-        <header className="mb-8">
-          <div className="flex items-start justify-between">
+        <header className="mb-6 md:mb-8">
+          <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
-              <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 bg-clip-text text-transparent">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 bg-clip-text text-transparent">
                 Extended Range Guitar Scale Visualizer
               </h1>
-              <p className="text-slate-600 dark:text-slate-400">
+              <p className="text-sm md:text-base text-slate-600 dark:text-slate-400">
                 Explore scales and modes for 6, 7 and 8-string guitars - Perfect for progressive
                 metal & djent
               </p>
@@ -36,9 +36,20 @@ function App() {
         </header>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-[300px_1fr] xl:grid-cols-[320px_1fr] gap-6">
-          {/* Sidebar */}
-          <aside className="space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] xl:grid-cols-[320px_1fr] gap-6">
+          {/* Fretboard - Shows first on mobile, second on desktop */}
+          <main className="order-1 lg:order-2">
+            <Fretboard
+              scale={currentScale}
+              rootNote={rootNote}
+              tuning={currentTuning}
+              showNoteNames={showNoteNames}
+              showIntervals={showIntervals}
+            />
+          </main>
+
+          {/* Sidebar - Shows second on mobile, first on desktop */}
+          <aside className="space-y-6 order-2 lg:order-1">
             <SettingsPanel
               selectedScale={selectedScale}
               setSelectedScale={setSelectedScale}
@@ -54,17 +65,6 @@ function App() {
             />
             <ScaleInfo scale={currentScale} rootNote={rootNote} />
           </aside>
-
-          {/* Fretboard */}
-          <main>
-            <Fretboard
-              scale={currentScale}
-              rootNote={rootNote}
-              tuning={currentTuning}
-              showNoteNames={showNoteNames}
-              showIntervals={showIntervals}
-            />
-          </main>
         </div>
       </div>
     </div>
