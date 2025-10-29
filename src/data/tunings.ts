@@ -92,7 +92,7 @@ export const TUNINGS: Tuning[] = [
   },
   {
     id: 'meshuggah-8',
-    name: '8-String Meshuggah (F Standard)',
+    name: '8-String F Standard',
     notes: ['F', 'A#', 'D#', 'G#', 'C#', 'F#', 'A#', 'D#'],
     strings: 8,
   },
