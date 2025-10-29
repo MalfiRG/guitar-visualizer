@@ -13,7 +13,7 @@ export const SCALES: Scale[] = [
     name: 'Major Pentatonic',
     intervals: [0, 2, 4, 7, 9],
     description: 'Bright and uplifting. Great for melodic passages.',
-    genre: 'Rock/Metal',
+    genre: 'Rock/Metal/Blues/Country',
   },
   {
     id: 'natural-minor',
@@ -27,21 +27,21 @@ export const SCALES: Scale[] = [
     name: 'Harmonic Minor',
     intervals: [0, 2, 3, 5, 7, 8, 11],
     description: 'Creates exotic, neoclassical sounds. Popular in metal.',
-    genre: 'Neoclassical Metal',
+    genre: 'Neoclassical/Power Metal',
   },
   {
     id: 'phrygian',
     name: 'Phrygian',
     intervals: [0, 1, 3, 5, 7, 8, 10],
     description: 'Spanish/Middle Eastern flavor. Essential for metal riffs.',
-    genre: 'Thrash/Death Metal',
+    genre: 'Thrash/Death Metal; Also popular for flamenco and Middle Eastern fusion',
   },
   {
     id: 'phrygian-dominant',
     name: 'Phrygian Dominant',
     intervals: [0, 1, 4, 5, 7, 8, 10],
     description: 'Exotic and dark. Perfect for modern progressive metal.',
-    genre: 'Progressive Metal',
+    genre: 'Progressive Metal, middle eastern/gypsy jazz',
   },
   {
     id: 'locrian',
@@ -62,7 +62,7 @@ export const SCALES: Scale[] = [
     name: 'Mixolydian',
     intervals: [0, 2, 4, 5, 7, 9, 10],
     description: 'Bluesy major scale. Common in rock and metal.',
-    genre: 'Rock/Blues',
+    genre: 'Rock/Blues, funk, jam-band styles',
   },
   {
     id: 'whole-tone',
