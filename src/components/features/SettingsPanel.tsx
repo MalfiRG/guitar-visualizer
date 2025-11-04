@@ -191,29 +191,35 @@ export function SettingsPanel({
                     <SelectItem disabled value="6-string-header">
                       <span className="font-semibold text-gray-500">6-String</span>
                     </SelectItem>
-                    {allTunings.filter((t) => t.strings === 6 && !t.isCustom).map((t) => (
-                      <SelectItem key={t.id} value={t.id}>
-                        {t.name}
-                      </SelectItem>
-                    ))}
+                    {allTunings
+                      .filter((t) => t.strings === 6 && !t.isCustom)
+                      .map((t) => (
+                        <SelectItem key={t.id} value={t.id}>
+                          {t.name}
+                        </SelectItem>
+                      ))}
 
                     <SelectItem disabled value="7-string-header">
                       <span className="font-semibold text-gray-500 mt-2">7-String</span>
                     </SelectItem>
-                    {allTunings.filter((t) => t.strings === 7 && !t.isCustom).map((t) => (
-                      <SelectItem key={t.id} value={t.id}>
-                        {t.name}
-                      </SelectItem>
-                    ))}
+                    {allTunings
+                      .filter((t) => t.strings === 7 && !t.isCustom)
+                      .map((t) => (
+                        <SelectItem key={t.id} value={t.id}>
+                          {t.name}
+                        </SelectItem>
+                      ))}
 
                     <SelectItem disabled value="8-string-header">
                       <span className="font-semibold text-gray-500 mt-2">8-String</span>
                     </SelectItem>
-                    {allTunings.filter((t) => t.strings === 8 && !t.isCustom).map((t) => (
-                      <SelectItem key={t.id} value={t.id}>
-                        {t.name}
-                      </SelectItem>
-                    ))}
+                    {allTunings
+                      .filter((t) => t.strings === 8 && !t.isCustom)
+                      .map((t) => (
+                        <SelectItem key={t.id} value={t.id}>
+                          {t.name}
+                        </SelectItem>
+                      ))}
                   </SelectContent>
                 </Select>
                 <div className="flex items-center justify-between">

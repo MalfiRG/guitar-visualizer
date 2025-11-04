@@ -85,7 +85,10 @@ export function Fretboard({
       )}
 
       <div className="w-full overflow-x-auto lg:overflow-x-visible">
-        <div className="p-4 md:p-5 lg:p-6 rounded-lg shadow-lg" style={{ backgroundColor: '#615655' }}>
+        <div
+          className="p-4 md:p-5 lg:p-6 rounded-lg shadow-lg"
+          style={{ backgroundColor: '#615655' }}
+        >
           {/* Fret markers */}
           <div className="flex mb-2">
             <div className="w-8 md:w-10 lg:w-12" /> {/* String labels space */}
@@ -104,7 +107,10 @@ export function Fretboard({
           {tuning.notes.map((openNote, stringIndex) => (
             <div key={stringIndex} className="flex items-center mb-3 md:mb-4 last:mb-0">
               {/* String label */}
-              <div className="w-8 md:w-10 lg:w-12 font-bold text-xs md:text-sm text-right pr-2 md:pr-3" style={{ color: '#D1D5DB' }}>
+              <div
+                className="w-8 md:w-10 lg:w-12 font-bold text-xs md:text-sm text-right pr-2 md:pr-3"
+                style={{ color: '#D1D5DB' }}
+              >
                 {openNote}
               </div>
 
@@ -158,13 +164,22 @@ export function Fretboard({
                       {/* Fret markers (dots) */}
                       {stringIndex === Math.floor(tuning.strings / 2) &&
                         [3, 5, 7, 9, 15, 17, 19, 21].includes(fret) && (
-                          <div className="absolute w-1.5 h-1.5 md:w-2 md:h-2 rounded-full opacity-40" style={{ backgroundColor: '#D1D5DB' }} />
+                          <div
+                            className="absolute w-1.5 h-1.5 md:w-2 md:h-2 rounded-full opacity-40"
+                            style={{ backgroundColor: '#D1D5DB' }}
+                          />
                         )}
                       {stringIndex === Math.floor(tuning.strings / 2) &&
                         [12, 24].includes(fret) && (
                           <>
-                            <div className="absolute w-1.5 h-1.5 md:w-2 md:h-2 rounded-full opacity-40 top-1/4" style={{ backgroundColor: '#D1D5DB' }} />
-                            <div className="absolute w-1.5 h-1.5 md:w-2 md:h-2 rounded-full opacity-40 bottom-1/4" style={{ backgroundColor: '#D1D5DB' }} />
+                            <div
+                              className="absolute w-1.5 h-1.5 md:w-2 md:h-2 rounded-full opacity-40 top-1/4"
+                              style={{ backgroundColor: '#D1D5DB' }}
+                            />
+                            <div
+                              className="absolute w-1.5 h-1.5 md:w-2 md:h-2 rounded-full opacity-40 bottom-1/4"
+                              style={{ backgroundColor: '#D1D5DB' }}
+                            />
                           </>
                         )}
                     </div>

@@ -1,6 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import { transposeNote } from '../data/notes';
-import { getInterval, isNoteInScale, getNoteAtFret, getIntervalName, getFretNote } from './fretboard';
+import {
+  getInterval,
+  isNoteInScale,
+  getNoteAtFret,
+  getIntervalName,
+  getFretNote,
+} from './fretboard';
 import { SCALES } from '../data/scales';
 
 describe('Fretboard Utils', () => {

@@ -11,9 +11,7 @@ interface CustomTuningInputProps {
 
 export function CustomTuningInput({ onSave, onCancel }: CustomTuningInputProps) {
   const [stringCount, setStringCount] = useState<6 | 7 | 8>(6);
-  const [notes, setNotes] = useState<Note[]>(
-    Array(6).fill('E') as Note[]
-  );
+  const [notes, setNotes] = useState<Note[]>(Array(6).fill('E') as Note[]);
 
   const handleStringCountChange = (count: 6 | 7 | 8) => {
     setStringCount(count);
@@ -38,9 +36,7 @@ export function CustomTuningInput({ onSave, onCancel }: CustomTuningInputProps) 
   return (
     <div className="space-y-4 p-4 bg-slate-100 dark:bg-slate-900 rounded-lg border-2 border-slate-300 dark:border-slate-700">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-          Custom Tuning
-        </h3>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Custom Tuning</h3>
         <button
           onClick={onCancel}
           className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
@@ -70,9 +66,7 @@ export function CustomTuningInput({ onSave, onCancel }: CustomTuningInputProps) 
 
       {/* Note Selectors */}
       <div className="space-y-3">
-        <Label className="text-gray-700 dark:text-gray-300">
-          String Notes (Low to High)
-        </Label>
+        <Label className="text-gray-700 dark:text-gray-300">String Notes (Low to High)</Label>
         <div className="grid grid-cols-2 gap-3">
           {notes.map((note, index) => (
             <div key={index} className="space-y-1">
