@@ -12,8 +12,6 @@ import { cn } from '../../utils/cn';
 interface SettingsPanelProps {
   selectedScale: string;
   setSelectedScale: (value: string) => void;
-  rootNote: string;
-  setRootNote: (value: string) => void;
   tuning: string;
   setTuning: (value: string) => void;
   showNoteNames: boolean;
@@ -30,8 +28,6 @@ interface SettingsPanelProps {
 export function SettingsPanel({
   selectedScale,
   setSelectedScale,
-  rootNote,
-  setRootNote,
   tuning,
   setTuning,
   showNoteNames,
@@ -121,25 +117,6 @@ export function SettingsPanel({
                 {SCALES.map((scale) => (
                   <SelectItem key={scale.id} value={scale.id}>
                     {scale.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Root Note Selection */}
-          <div className="space-y-2">
-            <Label htmlFor="root-note-select" className="text-gray-700 dark:text-gray-300">
-              Root Note
-            </Label>
-            <Select value={rootNote} onValueChange={setRootNote}>
-              <SelectTrigger id="root-note-select">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {CHROMATIC_NOTES.map((note) => (
-                  <SelectItem key={note} value={note}>
-                    {note}
                   </SelectItem>
                 ))}
               </SelectContent>
