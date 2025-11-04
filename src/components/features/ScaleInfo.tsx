@@ -41,11 +41,11 @@ export function ScaleInfo({ scale, rootNote }: ScaleInfoProps) {
             {scaleNotes.map((note, index) => (
               <div
                 key={index}
-                className={
-                  index === 0
-                    ? 'px-3 py-1.5 rounded-md bg-gradient-to-br from-emerald-400 to-emerald-600 text-white font-semibold text-sm shadow-md'
-                    : 'px-3 py-1.5 rounded-md bg-gradient-to-br from-cyan-400 to-cyan-600 text-white font-medium text-sm shadow-sm'
-                }
+                className="px-3 py-1.5 rounded-md text-white font-semibold text-sm shadow-md border-2"
+                style={{
+                  backgroundColor: index === 0 ? '#E1776D' : '#6CE0C7',
+                  borderColor: index === 0 ? '#C55F55' : '#4DB59F',
+                }}
               >
                 {note}
               </div>
