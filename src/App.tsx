@@ -35,14 +35,14 @@ function App() {
               <h1
                 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 bg-clip-text text-transparent"
                 style={{
-                  backgroundImage: 'linear-gradient(to right, #E62954, #1FB0E5)',
+                  backgroundImage: 'linear-gradient(to right, #E1776D, #6CE0C7)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}
               >
                 Extended Range Guitar Scale Visualizer
               </h1>
-              <p className="text-sm md:text-base" style={{ color: '#914A5A' }}>
+              <p className="text-sm md:text-base" style={{ color: '#615655' }}>
                 Explore scales and modes for 6, 7 and 8-string guitars - Perfect for any guitarist.
               </p>
             </div>

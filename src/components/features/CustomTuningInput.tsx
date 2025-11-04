@@ -59,7 +59,7 @@ export function CustomTuningInput({ onSave, onCancel }: CustomTuningInputProps) 
               onClick={() => handleStringCountChange(count)}
               className="flex-1 py-2 px-4 rounded-md font-semibold transition-all duration-200 text-white shadow-md"
               style={{
-                backgroundColor: stringCount === count ? '#E62954' : '#6B7280',
+                backgroundColor: stringCount === count ? '#E1776D' : '#9CA3AF',
               }}
             >
               {count}
@@ -103,7 +103,7 @@ export function CustomTuningInput({ onSave, onCancel }: CustomTuningInputProps) 
       <button
         onClick={handleSave}
         className="w-full py-3 px-4 rounded-lg font-semibold transition-all duration-200 text-white shadow-md hover:shadow-lg"
-        style={{ backgroundColor: '#1FB0E5' }}
+        style={{ backgroundColor: '#6CE0C7' }}
       >
         Save Custom Tuning
       </button>

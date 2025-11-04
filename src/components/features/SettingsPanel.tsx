@@ -156,9 +156,9 @@ export function SettingsPanel({
                 <button
                   onClick={() => setShowCustomInput(true)}
                   className="text-xs font-semibold transition-colors"
-                  style={{ color: '#1FB0E5' }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = '#0A7EA8')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = '#1FB0E5')}
+                  style={{ color: '#6CE0C7' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#4DB59F')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = '#6CE0C7')}
                 >
                   + Custom
                 </button>
@@ -224,9 +224,9 @@ export function SettingsPanel({
                     <button
                       onClick={handleClearCustomTuning}
                       className="text-xs transition-colors"
-                      style={{ color: '#E62954' }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = '#B52144')}
-                      onMouseLeave={(e) => (e.currentTarget.style.color = '#E62954')}
+                      style={{ color: '#E1776D' }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = '#C55F55')}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = '#E1776D')}
                     >
                       Clear
                     </button>
