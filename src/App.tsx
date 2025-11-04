@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Fretboard } from './components/features/Fretboard';
 import { RootNoteSelector } from './components/features/RootNoteSelector';
 import { SettingsPanel } from './components/features/SettingsPanel';
@@ -6,6 +6,7 @@ import { ScaleInfo } from './components/features/ScaleInfo';
 import { ThemeToggle } from './components/layout/ThemeToggle';
 import { SCALES } from './data/scales';
 import { TUNINGS } from './data/tunings';
+import { useCustomTuning } from './hooks/useCustomTuning';
 
 function App() {
   const [selectedScale, setSelectedScale] = useState('minor-pentatonic');
@@ -14,8 +15,16 @@ function App() {
   const [showNoteNames, setShowNoteNames] = useState(true);
   const [showIntervals, setShowIntervals] = useState(false);
 
+  const { customTuning, createCustomTuning, clearCustomTuning } = useCustomTuning();
+
   const currentScale = SCALES.find((s) => s.id === selectedScale) || SCALES[0];
-  const currentTuning = TUNINGS.find((t) => t.id === tuning) || TUNINGS[0];
+
+  // Combine standard tunings with custom tuning
+  const allTunings = useMemo(() => {
+    return customTuning ? [...TUNINGS, customTuning] : TUNINGS;
+  }, [customTuning]);
+
+  const currentTuning = allTunings.find((t) => t.id === tuning) || allTunings[0];
 
   return (
     <div className="min-h-screen bg-white dark:bg-black text-slate-900 dark:text-white transition-colors duration-200">
@@ -24,10 +33,17 @@ function App() {
         <header className="mb-6 md:mb-8">
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 bg-clip-text text-transparent">
+              <h1
+                className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 bg-clip-text text-transparent"
+                style={{
+                  backgroundImage: 'linear-gradient(to right, #E1776D, #6CE0C7)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}
+              >
                 Extended Range Guitar Scale Visualizer
               </h1>
-              <p className="text-sm md:text-base text-slate-600 dark:text-slate-400">
+              <p className="text-sm md:text-base" style={{ color: '#615655' }}>
                 Explore scales and modes for 6, 7 and 8-string guitars - Perfect for any guitarist.
               </p>
             </div>
@@ -45,6 +61,7 @@ function App() {
               tuning={currentTuning}
               showNoteNames={showNoteNames}
               showIntervals={showIntervals}
+              onRootNoteChange={setRootNote}
             />
             {/* Root Note Selector - Below the fretboard */}
             <RootNoteSelector rootNote={rootNote} setRootNote={setRootNote} />
@@ -62,6 +79,10 @@ function App() {
               showIntervals={showIntervals}
               setShowIntervals={setShowIntervals}
               currentTuning={currentTuning}
+              allTunings={allTunings}
+              customTuning={customTuning}
+              onCreateCustomTuning={createCustomTuning}
+              onClearCustomTuning={clearCustomTuning}
             />
             <ScaleInfo scale={currentScale} rootNote={rootNote} />
           </aside>

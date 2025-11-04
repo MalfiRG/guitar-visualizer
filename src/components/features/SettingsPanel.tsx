@@ -4,8 +4,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Switch } from '../ui/Switch';
 import { Label } from '../ui/Label';
 import { SCALES } from '../../data/scales';
-import { TUNINGS } from '../../data/tunings';
-import type { Tuning } from '../../types';
+import { CHROMATIC_NOTES } from '../../data/notes';
+import { CustomTuningInput } from './CustomTuningInput';
+import type { Tuning, Note } from '../../types';
 import { cn } from '../../utils/cn';
 
 interface SettingsPanelProps {
@@ -18,6 +19,10 @@ interface SettingsPanelProps {
   showIntervals: boolean;
   setShowIntervals: (value: boolean) => void;
   currentTuning: Tuning;
+  allTunings: Tuning[];
+  customTuning: Tuning | null;
+  onCreateCustomTuning: (notes: Note[]) => Tuning;
+  onClearCustomTuning: () => void;
 }
 
 export function SettingsPanel({
@@ -30,8 +35,28 @@ export function SettingsPanel({
   showIntervals,
   setShowIntervals,
   currentTuning,
+  allTunings,
+  customTuning,
+  onCreateCustomTuning,
+  onClearCustomTuning,
 }: SettingsPanelProps) {
   const [isExpanded, setIsExpanded] = useState(true);
+  const [showCustomInput, setShowCustomInput] = useState(false);
+
+  const handleSaveCustomTuning = (notes: Note[]) => {
+    const newTuning = onCreateCustomTuning(notes);
+    setTuning(newTuning.id);
+    setShowCustomInput(false);
+  };
+
+  const handleCancelCustomInput = () => {
+    setShowCustomInput(false);
+  };
+
+  const handleClearCustomTuning = () => {
+    onClearCustomTuning();
+    setTuning('standard-6');
+  };
 
   return (
     <Card>
@@ -100,45 +125,98 @@ export function SettingsPanel({
 
           {/* Tuning Selection */}
           <div className="space-y-2">
-            <Label htmlFor="tuning-select" className="text-gray-700 dark:text-gray-300">
-              Tuning
-            </Label>
-            <Select value={tuning} onValueChange={setTuning}>
-              <SelectTrigger id="tuning-select">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem disabled value="6-string-header">
-                  <span className="font-semibold text-gray-500">6-String</span>
-                </SelectItem>
-                {TUNINGS.filter((t) => t.strings === 6).map((t) => (
-                  <SelectItem key={t.id} value={t.id}>
-                    {t.name}
-                  </SelectItem>
-                ))}
+            <div className="flex items-center justify-between">
+              <Label htmlFor="tuning-select" className="text-gray-700 dark:text-gray-300">
+                Tuning
+              </Label>
+              {!showCustomInput && (
+                <button
+                  onClick={() => setShowCustomInput(true)}
+                  className="text-xs font-semibold transition-colors"
+                  style={{ color: '#6CE0C7' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#4DB59F')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = '#6CE0C7')}
+                >
+                  + Custom
+                </button>
+              )}
+            </div>
 
-                <SelectItem disabled value="7-string-header">
-                  <span className="font-semibold text-gray-500 mt-2">7-String</span>
-                </SelectItem>
-                {TUNINGS.filter((t) => t.strings === 7).map((t) => (
-                  <SelectItem key={t.id} value={t.id}>
-                    {t.name}
-                  </SelectItem>
-                ))}
+            {showCustomInput ? (
+              <CustomTuningInput
+                onSave={handleSaveCustomTuning}
+                onCancel={handleCancelCustomInput}
+              />
+            ) : (
+              <>
+                <Select value={tuning} onValueChange={setTuning}>
+                  <SelectTrigger id="tuning-select">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {customTuning && (
+                      <>
+                        <SelectItem disabled value="custom-header">
+                          <span className="font-semibold text-gray-500">Custom</span>
+                        </SelectItem>
+                        <SelectItem key={customTuning.id} value={customTuning.id}>
+                          {customTuning.name}
+                        </SelectItem>
+                      </>
+                    )}
 
-                <SelectItem disabled value="8-string-header">
-                  <span className="font-semibold text-gray-500 mt-2">8-String</span>
-                </SelectItem>
-                {TUNINGS.filter((t) => t.strings === 8).map((t) => (
-                  <SelectItem key={t.id} value={t.id}>
-                    {t.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-              {currentTuning.notes.join(' - ')}
-            </p>
+                    <SelectItem disabled value="6-string-header">
+                      <span className="font-semibold text-gray-500">6-String</span>
+                    </SelectItem>
+                    {allTunings
+                      .filter((t) => t.strings === 6 && !t.isCustom)
+                      .map((t) => (
+                        <SelectItem key={t.id} value={t.id}>
+                          {t.name}
+                        </SelectItem>
+                      ))}
+
+                    <SelectItem disabled value="7-string-header">
+                      <span className="font-semibold text-gray-500 mt-2">7-String</span>
+                    </SelectItem>
+                    {allTunings
+                      .filter((t) => t.strings === 7 && !t.isCustom)
+                      .map((t) => (
+                        <SelectItem key={t.id} value={t.id}>
+                          {t.name}
+                        </SelectItem>
+                      ))}
+
+                    <SelectItem disabled value="8-string-header">
+                      <span className="font-semibold text-gray-500 mt-2">8-String</span>
+                    </SelectItem>
+                    {allTunings
+                      .filter((t) => t.strings === 8 && !t.isCustom)
+                      .map((t) => (
+                        <SelectItem key={t.id} value={t.id}>
+                          {t.name}
+                        </SelectItem>
+                      ))}
+                  </SelectContent>
+                </Select>
+                <div className="flex items-center justify-between">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    {currentTuning.notes.join(' - ')}
+                  </p>
+                  {customTuning && tuning === 'custom' && (
+                    <button
+                      onClick={handleClearCustomTuning}
+                      className="text-xs transition-colors"
+                      style={{ color: '#E1776D' }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = '#C55F55')}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = '#E1776D')}
+                    >
+                      Clear
+                    </button>
+                  )}
+                </div>
+              </>
+            )}
           </div>
 
           {/* Display Options */}
