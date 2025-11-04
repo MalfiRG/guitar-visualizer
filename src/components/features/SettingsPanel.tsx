@@ -181,7 +181,6 @@ export function SettingsPanel({
                   setShowNoteNames(checked);
                   if (checked) setShowIntervals(false);
                 }}
-                disabled={showIntervals}
                 className="data-[state=checked]:bg-emerald-500"
               />
             </div>
@@ -200,7 +199,6 @@ export function SettingsPanel({
                   setShowIntervals(checked);
                   if (checked) setShowNoteNames(false);
                 }}
-                disabled={showNoteNames}
                 className="data-[state=checked]:bg-cyan-500"
               />
             </div>
