@@ -13,6 +13,7 @@ export interface Tuning {
   name: string;
   notes: Note[];
   strings: number;
+  isCustom?: boolean;
 }
 
 export interface FretNote {

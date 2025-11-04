@@ -1,6 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import { transposeNote } from '../data/notes';
-import { getInterval, isNoteInScale, getNoteAtFret, getIntervalName } from './fretboard';
+import {
+  getInterval,
+  isNoteInScale,
+  getNoteAtFret,
+  getIntervalName,
+  getFretNote,
+} from './fretboard';
 import { SCALES } from '../data/scales';
 
 describe('Fretboard Utils', () => {
@@ -51,6 +57,45 @@ describe('Fretboard Utils', () => {
       expect(transposeNote('C', 2)).toBe('D');
       expect(transposeNote('E', 5)).toBe('A');
       expect(transposeNote('A', 7)).toBe('E');
+    });
+  });
+
+  describe('getFretNote', () => {
+    it('should identify root notes correctly', () => {
+      const minorPentatonic = SCALES.find((s) => s.id === 'minor-pentatonic')!;
+      const fretNote = getFretNote('E', 0, 'E', minorPentatonic);
+
+      expect(fretNote).not.toBeNull();
+      expect(fretNote?.isRoot).toBe(true);
+      expect(fretNote?.note).toBe('E');
+    });
+
+    it('should identify scale notes correctly', () => {
+      const minorPentatonic = SCALES.find((s) => s.id === 'minor-pentatonic')!;
+      // G is the minor 3rd (interval 3), which is in the scale
+      const fretNote = getFretNote('E', 3, 'E', minorPentatonic);
+
+      expect(fretNote).not.toBeNull();
+      expect(fretNote?.isRoot).toBe(false);
+      expect(fretNote?.interval).toBe(3);
+    });
+
+    it('should identify non-root scale notes', () => {
+      const minorPentatonic = SCALES.find((s) => s.id === 'minor-pentatonic')!;
+      // A is the perfect 4th (interval 5), in the scale but not root
+      const fretNote = getFretNote('E', 5, 'E', minorPentatonic);
+
+      expect(fretNote).not.toBeNull();
+      expect(fretNote?.isRoot).toBe(false);
+      expect(fretNote?.interval).toBe(5);
+    });
+
+    it('should return null for notes not in scale', () => {
+      const minorPentatonic = SCALES.find((s) => s.id === 'minor-pentatonic')!;
+      // F is not in E minor pentatonic
+      const fretNote = getFretNote('E', 1, 'E', minorPentatonic);
+
+      expect(fretNote).toBeNull();
     });
   });
 });
