@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Fretboard } from './components/features/Fretboard';
+import { RootNoteSelector } from './components/features/RootNoteSelector';
 import { SettingsPanel } from './components/features/SettingsPanel';
 import { ScaleInfo } from './components/features/ScaleInfo';
 import { ThemeToggle } from './components/layout/ThemeToggle';
@@ -45,6 +46,8 @@ function App() {
               showNoteNames={showNoteNames}
               showIntervals={showIntervals}
             />
+            {/* Root Note Selector - Below the fretboard */}
+            <RootNoteSelector rootNote={rootNote} setRootNote={setRootNote} />
           </main>
 
           {/* Sidebar - Shows second on mobile, first on desktop */}
@@ -52,8 +55,6 @@ function App() {
             <SettingsPanel
               selectedScale={selectedScale}
               setSelectedScale={setSelectedScale}
-              rootNote={rootNote}
-              setRootNote={setRootNote}
               tuning={tuning}
               setTuning={setTuning}
               showNoteNames={showNoteNames}
