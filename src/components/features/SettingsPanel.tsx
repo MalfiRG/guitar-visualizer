@@ -4,7 +4,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Switch } from '../ui/Switch';
 import { Label } from '../ui/Label';
 import { SCALES } from '../../data/scales';
-import { CHROMATIC_NOTES } from '../../data/notes';
 import { CustomTuningInput } from './CustomTuningInput';
 import type { Tuning, Note } from '../../types';
 import { cn } from '../../utils/cn';
