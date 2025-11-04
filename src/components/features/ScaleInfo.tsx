@@ -60,7 +60,11 @@ export function ScaleInfo({ scale, rootNote }: ScaleInfoProps) {
             {scale.intervals.map((interval, index) => (
               <div
                 key={index}
-                className="px-3 py-1.5 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-mono text-sm"
+                className="px-3 py-1.5 rounded-md text-white font-semibold text-sm shadow-md border-2"
+                style={{
+                  backgroundColor: '#6CE0C7',
+                  borderColor: '#4DB59F',
+                }}
               >
                 {interval}
               </div>
