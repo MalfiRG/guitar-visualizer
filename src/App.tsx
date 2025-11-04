@@ -32,10 +32,17 @@ function App() {
         <header className="mb-6 md:mb-8">
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 bg-clip-text text-transparent">
+              <h1
+                className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 bg-clip-text text-transparent"
+                style={{
+                  backgroundImage: 'linear-gradient(to right, #E62954, #1FB0E5)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}
+              >
                 Extended Range Guitar Scale Visualizer
               </h1>
-              <p className="text-sm md:text-base text-slate-600 dark:text-slate-400">
+              <p className="text-sm md:text-base" style={{ color: '#914A5A' }}>
                 Explore scales and modes for 6, 7 and 8-string guitars - Perfect for any guitarist.
               </p>
             </div>

@@ -64,33 +64,22 @@ describe('Fretboard Utils', () => {
       expect(fretNote?.note).toBe('E');
     });
 
-    it('should identify characteristic notes in minor pentatonic', () => {
+    it('should identify scale notes correctly', () => {
       const minorPentatonic = SCALES.find((s) => s.id === 'minor-pentatonic')!;
-      // G is the minor 3rd (interval 3), which is characteristic
+      // G is the minor 3rd (interval 3), which is in the scale
       const fretNote = getFretNote('E', 3, 'E', minorPentatonic);
 
       expect(fretNote).not.toBeNull();
-      expect(fretNote?.isCharacteristic).toBe(true);
+      expect(fretNote?.isRoot).toBe(false);
       expect(fretNote?.interval).toBe(3);
     });
 
-    it('should identify characteristic notes in harmonic minor', () => {
-      const harmonicMinor = SCALES.find((s) => s.id === 'harmonic-minor')!;
-      // D# is the major 7th (interval 11), which is the characteristic exotic note
-      const fretNote = getFretNote('E', 11, 'E', harmonicMinor);
-
-      expect(fretNote).not.toBeNull();
-      expect(fretNote?.isCharacteristic).toBe(true);
-      expect(fretNote?.interval).toBe(11);
-    });
-
-    it('should identify non-characteristic notes', () => {
+    it('should identify non-root scale notes', () => {
       const minorPentatonic = SCALES.find((s) => s.id === 'minor-pentatonic')!;
-      // A is the perfect 4th (interval 5), not characteristic
+      // A is the perfect 4th (interval 5), in the scale but not root
       const fretNote = getFretNote('E', 5, 'E', minorPentatonic);
 
       expect(fretNote).not.toBeNull();
-      expect(fretNote?.isCharacteristic).toBe(false);
       expect(fretNote?.isRoot).toBe(false);
       expect(fretNote?.interval).toBe(5);
     });

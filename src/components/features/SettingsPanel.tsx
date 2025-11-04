@@ -155,7 +155,10 @@ export function SettingsPanel({
               {!showCustomInput && (
                 <button
                   onClick={() => setShowCustomInput(true)}
-                  className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
+                  className="text-xs font-semibold transition-colors"
+                  style={{ color: '#1FB0E5' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#0A7EA8')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = '#1FB0E5')}
                 >
                   + Custom
                 </button>
@@ -220,7 +223,10 @@ export function SettingsPanel({
                   {customTuning && tuning === 'custom' && (
                     <button
                       onClick={handleClearCustomTuning}
-                      className="text-xs text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors"
+                      className="text-xs transition-colors"
+                      style={{ color: '#E62954' }}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = '#B52144')}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = '#E62954')}
                     >
                       Clear
                     </button>

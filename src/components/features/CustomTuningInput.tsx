@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { CHROMATIC_NOTES } from '../../data/notes';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/Select';
 import { Label } from '../ui/Label';
-import { cn } from '../../utils/cn';
 import type { Note } from '../../types';
 
 interface CustomTuningInputProps {
@@ -58,12 +57,10 @@ export function CustomTuningInput({ onSave, onCancel }: CustomTuningInputProps) 
             <button
               key={count}
               onClick={() => handleStringCountChange(count)}
-              className={cn(
-                'flex-1 py-2 px-4 rounded-md font-semibold transition-all duration-200',
-                stringCount === count
-                  ? 'bg-gradient-to-r from-red-500 to-orange-600 text-white shadow-md'
-                  : 'bg-slate-200 dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-slate-300 dark:hover:bg-slate-700'
-              )}
+              className="flex-1 py-2 px-4 rounded-md font-semibold transition-all duration-200 text-white shadow-md"
+              style={{
+                backgroundColor: stringCount === count ? '#E62954' : '#6B7280',
+              }}
             >
               {count}
             </button>
@@ -105,11 +102,8 @@ export function CustomTuningInput({ onSave, onCancel }: CustomTuningInputProps) 
       {/* Save Button */}
       <button
         onClick={handleSave}
-        className={cn(
-          'w-full py-3 px-4 rounded-lg font-semibold transition-all duration-200',
-          'bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-md',
-          'hover:from-emerald-600 hover:to-cyan-600 hover:shadow-lg'
-        )}
+        className="w-full py-3 px-4 rounded-lg font-semibold transition-all duration-200 text-white shadow-md hover:shadow-lg"
+        style={{ backgroundColor: '#1FB0E5' }}
       >
         Save Custom Tuning
       </button>
