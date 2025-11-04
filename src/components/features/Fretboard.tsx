@@ -10,6 +10,7 @@ interface FretboardProps {
   tuning: Tuning;
   showNoteNames: boolean;
   showIntervals: boolean;
+  onRootNoteChange: (note: string) => void;
 }
 
 const TOTAL_FRETS = 24;
@@ -20,6 +21,7 @@ export function Fretboard({
   tuning,
   showNoteNames,
   showIntervals,
+  onRootNoteChange,
 }: FretboardProps) {
   const windowWidth = useWindowWidth();
   const config = getResponsiveFretConfig(windowWidth);
@@ -136,14 +138,21 @@ export function Fretboard({
                       {/* Note marker */}
                       {fretNote && (
                         <div
+                          onClick={() => onRootNoteChange(fretNote.note)}
                           className={cn(
-                            'relative z-10 rounded-full flex items-center justify-center font-bold transition-all duration-200',
-                            'text-[10px] md:text-xs',
-                            fretNote.isRoot
-                              ? 'bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-lg shadow-emerald-500/50 w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10'
-                              : 'bg-gradient-to-br from-cyan-400 to-cyan-600 text-white shadow-md shadow-cyan-500/30 w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8',
-                            'hover:scale-110 cursor-pointer'
+                            'relative z-10 rounded-md flex items-center justify-center font-bold transition-all duration-200',
+                            'text-[10px] md:text-xs cursor-pointer border-2',
+                            'w-full mx-1 py-1.5 md:py-2',
+                            fretNote.isRoot &&
+                              'bg-gradient-to-br from-red-500 to-orange-600 text-white shadow-lg shadow-red-500/50 border-orange-700 hover:from-red-600 hover:to-orange-700 hover:shadow-xl hover:shadow-red-500/60 hover:scale-105',
+                            !fretNote.isRoot &&
+                              fretNote.isCharacteristic &&
+                              'bg-gradient-to-br from-amber-400 to-yellow-500 text-gray-900 shadow-md shadow-amber-500/40 border-yellow-600 hover:from-amber-500 hover:to-yellow-600 hover:shadow-lg hover:shadow-amber-500/50 hover:scale-105',
+                            !fretNote.isRoot &&
+                              !fretNote.isCharacteristic &&
+                              'bg-gradient-to-br from-cyan-400 to-blue-500 text-white shadow-md shadow-cyan-500/30 border-blue-600 hover:from-cyan-500 hover:to-blue-600 hover:shadow-lg hover:shadow-cyan-500/40 hover:scale-105'
                           )}
+                          title={`Click to set ${fretNote.note} as root note`}
                         >
                           {showIntervals
                             ? getIntervalName(fretNote.interval)

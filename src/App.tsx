@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Fretboard } from './components/features/Fretboard';
 import { SettingsPanel } from './components/features/SettingsPanel';
 import { ScaleInfo } from './components/features/ScaleInfo';
 import { ThemeToggle } from './components/layout/ThemeToggle';
 import { SCALES } from './data/scales';
 import { TUNINGS } from './data/tunings';
+import { useCustomTuning } from './hooks/useCustomTuning';
 
 function App() {
   const [selectedScale, setSelectedScale] = useState('minor-pentatonic');
@@ -13,8 +14,16 @@ function App() {
   const [showNoteNames, setShowNoteNames] = useState(true);
   const [showIntervals, setShowIntervals] = useState(false);
 
+  const { customTuning, createCustomTuning, clearCustomTuning } = useCustomTuning();
+
   const currentScale = SCALES.find((s) => s.id === selectedScale) || SCALES[0];
-  const currentTuning = TUNINGS.find((t) => t.id === tuning) || TUNINGS[0];
+
+  // Combine standard tunings with custom tuning
+  const allTunings = useMemo(() => {
+    return customTuning ? [...TUNINGS, customTuning] : TUNINGS;
+  }, [customTuning]);
+
+  const currentTuning = allTunings.find((t) => t.id === tuning) || allTunings[0];
 
   return (
     <div className="min-h-screen bg-white dark:bg-black text-slate-900 dark:text-white transition-colors duration-200">
@@ -44,6 +53,7 @@ function App() {
               tuning={currentTuning}
               showNoteNames={showNoteNames}
               showIntervals={showIntervals}
+              onRootNoteChange={setRootNote}
             />
           </main>
 
@@ -61,6 +71,10 @@ function App() {
               showIntervals={showIntervals}
               setShowIntervals={setShowIntervals}
               currentTuning={currentTuning}
+              allTunings={allTunings}
+              customTuning={customTuning}
+              onCreateCustomTuning={createCustomTuning}
+              onClearCustomTuning={clearCustomTuning}
             />
             <ScaleInfo scale={currentScale} rootNote={rootNote} />
           </aside>

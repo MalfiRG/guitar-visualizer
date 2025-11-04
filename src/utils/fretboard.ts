@@ -74,10 +74,12 @@ export function getFretNote(
 
   const interval = getInterval(rootNote, note);
   const isRoot = interval === 0;
+  const isCharacteristic = scale.characteristicIntervals?.includes(interval) || false;
 
   return {
     note,
     interval,
     isRoot,
+    isCharacteristic,
   };
 }
