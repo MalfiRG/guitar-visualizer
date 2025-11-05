@@ -34,7 +34,7 @@ function App() {
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
               <h1
-                className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 bg-clip-text text-transparent"
+                className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 bg-clip-text text-transparent leading-tight pb-1"
                 style={{
                   backgroundImage: 'linear-gradient(to right, #E1776D, #6CE0C7)',
                   WebkitBackgroundClip: 'text',
